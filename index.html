@@ -1,131 +1,797 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jules BLS | Portfolio Mesures Physiques</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jules Balluais — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #181c22;
+      --bg2:       #1e2330;
+      --bg3:       #232936;
+      --surface:   #242a35;
+      --surface2:  #2c3343;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.13);
+      --text:      #dde3ee;
+      --text2:     #a8b3c8;
+      --muted:     #6a7590;
+      --accent:    #e8b94a;   /* yellow/gold like Gemini version */
+      --accent2:   #c99a30;
+      --blue:      #5b9bd5;
+      --blue-dim:  #3a6b9a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── subtle star-like dots background ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 34% 72%, rgba(255,255,255,0.18) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 9%,  rgba(255,255,255,0.22) 0%, transparent 100%),
+        radial-gradient(1px 1px at 76% 55%, rgba(255,255,255,0.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 91% 30%, rgba(255,255,255,0.20) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 90%, rgba(255,255,255,0.14) 0%, transparent 100%),
+        radial-gradient(1px 1px at 67% 80%, rgba(255,255,255,0.16) 0%, transparent 100%),
+        radial-gradient(1px 1px at 44% 45%, rgba(255,255,255,0.10) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 5%  60%, rgba(255,255,255,0.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 88%, rgba(255,255,255,0.18) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(24,28,34,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cv {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent) !important;
+      border: 1px solid var(--accent) !important;
+      padding: 0.5rem 1.1rem;
+      transition: all 0.25s !important;
+    }
+
+    .nav-cv:hover {
+      background: var(--accent) !important;
+      color: var(--bg) !important;
+    }
+
+    /* ── HERO ── */
+    #accueil {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+    }
+
+    /* radial glow — warm grey/slate, NOT blue */
+    #accueil::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 50% 48%, rgba(91,155,213,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 35% at 20% 85%, rgba(232,185,74,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 30% at 82% 15%, rgba(232,185,74,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.3s;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.55s;
+    }
+
+    /* subtle metallic feel via text-shadow */
+    .hero-title {
+      text-shadow: 0 2px 40px rgba(91,155,213,0.15), 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .hero-name-line {
+      display: block;
+      font-size: clamp(1.4rem, 4vw, 2.8rem);
+      letter-spacing: 0.25em;
+      color: var(--text2);
+      font-weight: 400;
+      text-shadow: none;
+      margin-top: 0.3rem;
+    }
+
+    .hero-name-line em {
+      font-style: normal;
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .hero-rule {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.8s;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text2);
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1s;
+    }
+
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1.2s;
+    }
+
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      border: 1px solid;
+      transition: all 0.28s;
+      display: inline-block;
+    }
+
+    .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+    .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+
+    .btn-ghost { background: transparent; color: var(--text2); border-color: var(--border2); }
+    .btn-ghost:hover { border-color: var(--text2); color: var(--text); }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 1.8s;
+    }
+
+    .scroll-cue span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-cue-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--accent2), transparent);
+      animation: linePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes linePulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .s-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.7rem;
+    }
+
+    .s-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.9rem;
+    }
+
+    .s-rule {
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 3rem;
+    }
+
+    /* ── À PROPOS ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p { color: var(--text2); margin-bottom: 1.1rem; font-size: 1rem; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    /* Infos card */
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      padding: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .info-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.2rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+    .info-row .label { color: var(--muted); font-style: italic; }
+    .info-row .val   { color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.75rem; }
+
+    /* Timeline */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 75px 1px 1fr;
+      gap: 0 1.5rem;
+      padding-bottom: 2rem;
+    }
+
+    .tl-item:last-child { padding-bottom: 0; }
+
+    .tl-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-align: right;
+      padding-top: 2px;
+      line-height: 1.4;
+    }
+
+    .tl-line { position: relative; background: var(--border2); }
+
+    .tl-line::before {
+      content: '';
+      position: absolute;
+      top: 3px; left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 8px; height: 8px;
+      border: 1px solid var(--accent2);
+      background: var(--bg);
+    }
+
+    .tl-body h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .tl-body p { font-size: 0.87rem; color: var(--muted); font-style: italic; }
+
+    /* ── PROJETS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--blue-dim), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .card:hover {
+      border-color: rgba(91,155,213,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .card:hover::before { transform: scaleX(1); }
+
+    .card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(232,185,74,0.25);
+      background: rgba(232,185,74,0.06);
+      padding: 0.18rem 0.65rem;
+      margin-bottom: 0.9rem;
+      border-radius: 2px;
+    }
+
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+    }
+
+    .card-desc { font-size: 0.9rem; color: var(--text2); line-height: 1.65; }
+
+    /* ── COMPÉTENCES ── */
+    .skills-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .skill-group h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.3rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .skill-rows { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-row { display: flex; flex-direction: column; gap: 0.35rem; }
+
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.67rem;
+      letter-spacing: 0.06em;
+      color: var(--text2);
+    }
+
+    .skill-label span { color: var(--muted); }
+
+    .skill-track { height: 2px; background: var(--border2); overflow: hidden; }
+
+    .skill-prog {
+      height: 100%;
+      background: linear-gradient(to right, var(--blue-dim), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.1s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .skill-prog.go { transform: scaleX(1); }
+
+    /* ── CONTACT ── */
+    .contact-wrap { text-align: center; }
+    .contact-wrap .s-rule { margin-left: auto; margin-right: auto; }
+
+    .contact-lead { font-size: 1rem; color: var(--text2); font-style: italic; margin-bottom: 2.8rem; }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .c-link {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.67rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text2);
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      background: var(--surface);
+      padding: 0.9rem 1.7rem;
+      transition: all 0.25s;
+    }
+
+    .c-link svg { width: 15px; height: 15px; opacity: 0.6; }
+    .c-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .ft-name { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--text2); }
+    .ft-copy { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--muted); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.on { opacity:1; transform:translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.8rem; text-align: center; }
+    }
+    @media (max-width: 520px) { .nav-links { display: none; } }
+  </style>
 </head>
 <body>
-<!-- Les particules et les halos de lumière -->
-    <div class="particles"></div>
-    <div class="light-flare flare-1"></div>
-    <div class="light-flare flare-2"></div>
 
-    <nav>
-        <div class="nav-container">
-            <div class="logo">JULES <span>BALLUAIS</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Accueil</a></li>
-                <li><a href="#infos">Infos</a></li>
-                <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#stage">Stage Comet</a></li>
-                <!-- Contact est revenu avec les autres -->
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <!-- Bouton CV bien encadré en or -->
-            <a href="#" class="nav-btn">TÉLÉCHARGER CV</a>
-        </div>
-    </nav>
+  <!-- NAV -->
+  <nav>
+    <a href="#accueil" class="nav-logo">Jules <span>Balluais</span></a>
+    <ul class="nav-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#apropos">Infos</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" class="nav-cv">Télécharger CV</a></li>
+    </ul>
+  </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-wrapper">
-            <p class="welcome-text">2023 — 2026</p>
-            <h1 class="main-title">PORTFOLIO</h1>
-            <p class="description">
-                Futur diplômé en <span>BUT Mesures Physiques</span> à l'IUT de Blois. 
-                Spécialisé en instrumentation, métrologie et automatisation.
-            </p>
-            
-            <div class="hero-actions">
-                <a href="#projets" class="btn-gold">VOIR MES PROJETS</a>
-                <a href="#stage" class="btn-outline">STAGE COMET</a>
-            </div>
-        </div>
-    </header>
+  <!-- HERO -->
+  <div id="accueil" style="position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:8rem 2rem 5rem; z-index:1;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 48%, rgba(91,155,213,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 35% at 20% 85%, rgba(232,185,74,0.05) 0%, transparent 60%);pointer-events:none;"></div>
 
-    <!-- Section Informations -->
-    <section id="infos" class="info-section">
-        <div class="container">
-            <h2>Informations</h2>
-            <div class="info-grid">
-                <div class="info-img">
-                    <img src="img/but-mp.jpg" alt="Mesures Physiques">
-                </div>
-                <div class="info-text">
-                    <p>Étudiant en BUT Mesures Physiques, j'ai réalisé de nombreux travaux pratiques autour de la physique, l'instrumentation et la métrologie. Ce portfolio présente une sélection de ces tests et les compétences développées.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Parcours -->
-    <section id="parcours" class="parcours-section">
-        <div class="container">
-            <h2>Mon Parcours</h2>
-            <div class="parcours-grid">
-                <div class="step">
-                    <h3>2020 - 2023</h3>
-                    <p>Lycée Balzac Tours Centre</p>
-                </div>
-                <div class="step">
-                    <h3>2023 - 2024</h3>
-                    <p>Licence Science pour l'Ingénieur <br> Université de Poitiers</p>
-                </div>
-                <div class="step highlight">
-                    <h3>2024 - 2026</h3>
-                    <p>BUT Mesure Physique <br> IUT de Blois</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Hero (Accueil) -->
-    <header id="home">
-        <div class="hero-content">
-            <h1>Futur Ingénieur en <br><span>Instrumentation</span></h1>
-            <p>Étudiant en BUT Mesures Physiques à l'IUT de Blois. Spécialisé en caractérisation automatisée et capteurs industriels.</p>
-            <div class="hero-btns">
-                <a href="#projets" class="btn-primary">Voir mes projets</a>
-                <a href="#stage" class="btn-secondary">Mon stage chez Comet</a>
-            </div>
-        </div>
-    </header>
-<!-- Section Projets 1ère Année -->
-<section id="projets" class="projects-section">
-    <h2 class="section-title">Projets Universitaires <span>1ère Année</span></h2>
-    
-    <div class="projects-grid">
-        <!-- Projet 1 : Oscillations d'un pendule -->
-        <div class="project-card">
-            <div class="project-img" style="background-image: url('img/pendule.jpg');"></div>
-            <div class="project-info">
-                <h3>Oscillations d'un pendule</h3>
-                <p class="tag">Mécanique & Acquisition</p>
-                <p>Étude de la période d'oscillation en fonction de la longueur et de la masse. Utilisation de capteurs de position pour l'acquisition de données en temps réel.</p>
-                <div class="skills">
-                    <span>Loi de Newton</span>
-                    <span>Régressions</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projet 2 : Ultrasons dans le vide -->
-        <div class="project-card">
-            <div class="project-img" style="background-image: url('img/ultrasons.jpg');"></div>
-            <div class="project-info">
-                <h3>Ultrasons dans le vide</h3>
-                <p class="tag">Thermodynamique & Ondes</p>
-                <p>Démonstration de la nécessité d'un milieu matériel pour la propagation des ondes sonores. Utilisation d'une cloche à vide et de capteurs piézoélectriques.</p>
-                <div class="skills">
-                    <span>Pompe à vide</span>
-                    <span>Ondes</span>
-                </div>
-            </div>
-        </div>
+    <p class="hero-eyebrow">2 0 2 3 &nbsp;—&nbsp; 2 0 2 6</p>
+    <h1 class="hero-title">
+      PORTFOLIO
+      <span class="hero-name-line">Jules &nbsp;<em>Balluais</em></span>
+    </h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Futur diplômé en <strong>BUT Mesures Physiques</strong> à l'IUT de Blois. Spécialisé en instrumentation, métrologie et automatisation.</p>
+    <div class="hero-btns">
+      <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+      <a href="#contact" class="btn btn-ghost">Stage Comet</a>
     </div>
-</section>
+
+    <div class="scroll-cue">
+      <span>Découvrir</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </div>
+
+  <!-- À PROPOS / INFOS -->
+  <section id="apropos">
+    <div class="section-wrap">
+      <p class="s-eyebrow reveal">01 — Infos</p>
+      <h2 class="s-title reveal">À propos de moi</h2>
+      <div class="s-rule reveal"></div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>Je m'appelle <strong>Jules Balluais</strong>, étudiant en deuxième année de <strong>BUT Mesures Physiques</strong> à l'IUT de Blois.</p>
+          <p>Mon parcours m'a amené à explorer la physique sous toutes ses facettes : l'<strong>instrumentation</strong>, la <strong>métrologie</strong> et les travaux pratiques expérimentaux.</p>
+          <p>J'aime comprendre comment les phénomènes physiques peuvent être mesurés, analysés et mis en application concrète dans un contexte professionnel ou de recherche.</p>
+          <div style="margin-top:2rem;">
+            <a href="#projets" class="btn btn-primary" style="font-size:0.65rem;">Découvrir mes travaux</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="info-card">
+            <h4>Informations</h4>
+            <div class="info-row"><span class="label">Formation</span><span class="val">BUT Mesures Physiques</span></div>
+            <div class="info-row"><span class="label">École</span><span class="val">IUT de Blois</span></div>
+            <div class="info-row"><span class="label">Période</span><span class="val">2024 – 2026</span></div>
+            <div class="info-row"><span class="label">Spécialité</span><span class="val">Instrumentation & Métrologie</span></div>
+            <div class="info-row"><span class="label">Disponibilité</span><span class="val">Stage / Alternance</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <div class="section-wrap">
+      <p class="s-eyebrow reveal">02 — Parcours</p>
+      <h2 class="s-title reveal">Mon parcours</h2>
+      <div class="s-rule reveal"></div>
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-year">2020<br>2023</div>
+          <div class="tl-line"></div>
+          <div class="tl-body"><h4>Lycée Balzac</h4><p>Tours Centre — Baccalauréat</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2023<br>2024</div>
+          <div class="tl-line"></div>
+          <div class="tl-body"><h4>Université de Poitiers</h4><p>Licence Sciences pour l'Ingénieur</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024<br>2026</div>
+          <div class="tl-line"></div>
+          <div class="tl-body"><h4>IUT de Blois</h4><p>BUT Mesures Physiques</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS -->
+  <section id="projets">
+    <div class="section-wrap">
+      <p class="s-eyebrow reveal">03 — Projets</p>
+      <h2 class="s-title reveal">Mes travaux</h2>
+      <div class="s-rule reveal"></div>
+      <div class="projects-grid">
+        <div class="card reveal">
+          <p class="card-num">Projet 01</p>
+          <span class="card-tag">1ère Année</span>
+          <h3 class="card-title">Projet Universitaire 1</h3>
+          <p class="card-desc">Premier projet universitaire en BUT Mesures Physiques. Travaux pratiques autour des mesures et de l'analyse des données expérimentales.</p>
+        </div>
+        <div class="card reveal">
+          <p class="card-num">Projet 02</p>
+          <span class="card-tag">1ère Année</span>
+          <h3 class="card-title">Projet Universitaire 2</h3>
+          <p class="card-desc">Approfondissement des techniques de mesure et d'instrumentation. Mise en pratique des concepts théoriques en laboratoire.</p>
+        </div>
+        <div class="card reveal">
+          <p class="card-num">Projet 03</p>
+          <span class="card-tag">2ème Année</span>
+          <h3 class="card-title">Projet Universitaire 3</h3>
+          <p class="card-desc">Projet de deuxième année intégrant des problématiques avancées en métrologie et traitement du signal physique.</p>
+        </div>
+        <div class="card reveal">
+          <p class="card-num">Projet 04</p>
+          <span class="card-tag">Stage</span>
+          <h3 class="card-title">Stage Professionnel</h3>
+          <p class="card-desc">Immersion en milieu professionnel. Application des compétences acquises dans un contexte réel d'entreprise ou de laboratoire.</p>
+        </div>
+        <div class="card reveal">
+          <p class="card-num">Projet 05</p>
+          <span class="card-tag">Atelier</span>
+          <h3 class="card-title">Atelier Radio</h3>
+          <p class="card-desc">Projet créatif autour des technologies radio. Exploration des ondes, de la transmission et des systèmes de communication.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCES -->
+  <section id="competences">
+    <div class="section-wrap">
+      <p class="s-eyebrow reveal">04 — Compétences</p>
+      <h2 class="s-title reveal">Ce que je maîtrise</h2>
+      <div class="s-rule reveal"></div>
+      <div class="skills-cols">
+        <div class="skill-group reveal">
+          <h4>Mesures & Physique</h4>
+          <div class="skill-rows">
+            <div class="skill-row"><div class="skill-label">Métrologie <span>Avancé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.85"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Instrumentation <span>Confirmé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.78"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Physique expérimentale <span>Avancé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.82"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Traitement du signal <span>Intermédiaire</span></div><div class="skill-track"><div class="skill-prog" data-w="0.62"></div></div></div>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Analyse & Outils</h4>
+          <div class="skill-rows">
+            <div class="skill-row"><div class="skill-label">Analyse de données <span>Confirmé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.74"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Rédaction de rapports <span>Avancé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.88"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Excel / Tableurs <span>Confirmé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.72"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Python (bases) <span>Débutant</span></div><div class="skill-track"><div class="skill-prog" data-w="0.42"></div></div></div>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Savoir-être</h4>
+          <div class="skill-rows">
+            <div class="skill-row"><div class="skill-label">Rigueur scientifique <span>Avancé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.9"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Travail en équipe <span>Confirmé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.8"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Autonomie <span>Confirmé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.76"></div></div></div>
+            <div class="skill-row"><div class="skill-label">Adaptabilité <span>Avancé</span></div><div class="skill-track"><div class="skill-prog" data-w="0.83"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-wrap contact-wrap">
+      <p class="s-eyebrow reveal">05 — Contact</p>
+      <h2 class="s-title reveal">Me retrouver</h2>
+      <div class="s-rule reveal"></div>
+      <p class="contact-lead reveal">N'hésitez pas à me contacter pour toute question ou opportunité.</p>
+      <div class="contact-row reveal">
+        <a href="mailto:jules.balluais@exemple.com" class="c-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Email
+        </a>
+        <a href="https://www.linkedin.com/in/" target="_blank" class="c-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/Kiritah-Blip" target="_blank" class="c-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="ft-name">Jules Balluais</span>
+    <span class="ft-copy">© 2025 — BUT Mesures Physiques · IUT de Blois</span>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('on'), i * 70);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    const skillObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-prog').forEach(bar => bar.classList.add('go'));
+          skillObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.skill-group').forEach(el => skillObs.observe(el));
+
+    const allSections = document.querySelectorAll('[id]');
+    const navAs = document.querySelectorAll('.nav-links a:not(.nav-cv)');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      allSections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
+      navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text)' : ''; });
+    });
+  </script>
 </body>
 </html>
