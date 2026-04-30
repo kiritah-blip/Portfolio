@@ -1,413 +1,152 @@
-/* =============================================
-   1. VARIABLES ET FONTES (L'ambiance "Reposante")
-   ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap');
 
 :root {
-    /* On remplace le noir pur par le bleu nuit très sombre du site SAO */
-    --bg-dark: #101425; 
-    /* Un bleu cyan plus doux pour le glow, moins agressif */
-    --primary-glow: #00e5ff; 
-    /* Le doré/jaune des boutons SAO, pour le contraste */
-    --accent-gold: #f4d06f; 
-    --text-light: #ffffff;
-    --text-gray: #a0aab5;
-    
-    /* Police principale douce (Poppins) et police tech pour les titres (Space Mono) */
-    --font-main: 'Poppins', sans-serif;
-    --font-tech: 'Space Mono', monospace;
+    --bg-gradient: radial-gradient(circle at 20% 30%, #2b355a 0%, #0f1322 100%);
+    --gold: #fbc02d;
+    --gold-glow: rgba(251, 192, 45, 0.4);
+    --cyan: #00e5ff;
 }
 
 body {
     margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    /* Ajout du dégradé radial subtil en fond comme sur l'image 0 */
-    background-image: radial-gradient(circle at center, #1a203a 0%, #101425 100%);
-    color: var(--text-light);
-    scroll-behavior: smooth;
-    letter-spacing: 0.5px;
-}
-
-/* =============================================
-   2. BARRE DE NAVIGATION (Translucide et centrée)
-   ============================================= */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* On centre la barre et on lui donne de l'air */
-    padding: 15px 50px;
-    margin: 20px auto;
-    max-width: 1200px;
-    /* Effet "Glassmorphism" (verre dépoli) de l'image 0 */
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-.logo { 
-    font-family: var(--font-tech);
-    font-size: 1.3rem; 
-    font-weight: 600; 
-    letter-spacing: -1px;
-}
-.logo span { color: var(--primary-glow); }
-
-nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-nav ul li { margin: 0 15px; }
-nav ul li a { 
-    color: var(--text-gray); 
-    text-decoration: none; 
-    font-size: 0.9rem;
-    font-weight: 300;
-    transition: 0.3s; 
-}
-nav ul li a:hover { color: var(--text-light); }
-
-/* Le bouton "Me contacter" style SAO */
-.btn-contact {
-    background: transparent;
-    border: 1px solid var(--accent-gold);
-    color: var(--accent-gold) !important;
-    padding: 8px 20px;
-    border-radius: 20px;
-    transition: 0.3s;
-}
-.btn-contact:hover {
-    background: var(--accent-gold);
-    color: #000 !important;
-    box-shadow: 0 0 10px rgba(244, 208, 111, 0.3);
-}
-
-/* =============================================
-   3. SECTION HERO (L'Atterrissage)
-   ============================================= */
-header {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 80px; /* Pour pas que le menu cache le titre */
-}
-
-.hero-content h1 { 
-    font-family: var(--font-tech);
-    font-size: 3.2rem; 
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 25px; 
-    color: var(--text-light);
-}
-
-/* On adoucit le glow bleu pour qu'il soit "reposant" */
-.hero-content span { 
-    color: var(--primary-glow); 
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5); 
-}
-
-.hero-content p {
-    color: var(--text-gray);
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-    line-height: 1.6;
-}
-
-/* Les boutons centrés style SAO */
-.hero-btns {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.btn-primary, .btn-secondary {
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-/* Bouton principal doré type "Télécharger le launcher" */
-.btn-primary {
-    background: var(--accent-gold);
-    color: #000;
-    box-shadow: 0 4px 15px rgba(244, 208, 111, 0.2);
-}
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(244, 208, 111, 0.4);
-}
-
-/* Bouton secondaire transparent type "Rejoindre le Discord" */
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--text-light);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-}/* =============================================
-   1. VARIABLES ET FONTES (L'ambiance "Reposante")
-   ============================================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Mono&display=swap');
-
-:root {
-    /* On remplace le noir pur par le bleu nuit très sombre du site SAO */
-    --bg-dark: #101425; 
-    /* Un bleu cyan plus doux pour le glow, moins agressif */
-    --primary-glow: #00e5ff; 
-    /* Le doré/jaune des boutons SAO, pour le contraste */
-    --accent-gold: #f4d06f; 
-    --text-light: #ffffff;
-    --text-gray: #a0aab5;
-    
-    /* Police principale douce (Poppins) et police tech pour les titres (Space Mono) */
-    --font-main: 'Poppins', sans-serif;
-    --font-tech: 'Space Mono', monospace;
-}
-
-body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    /* Ajout du dégradé radial subtil en fond comme sur l'image 0 */
-    background-image: radial-gradient(circle at center, #1a203a 0%, #101425 100%);
-    color: var(--text-light);
-    scroll-behavior: smooth;
-    letter-spacing: 0.5px;
-}
-
-/* =============================================
-   2. BARRE DE NAVIGATION (Translucide et centrée)
-   ============================================= */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* On centre la barre et on lui donne de l'air */
-    padding: 15px 50px;
-    margin: 20px auto;
-    max-width: 1200px;
-    /* Effet "Glassmorphism" (verre dépoli) de l'image 0 */
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-.logo { 
-    font-family: var(--font-tech);
-    font-size: 1.3rem; 
-    font-weight: 600; 
-    letter-spacing: -1px;
-}
-.logo span { color: var(--primary-glow); }
-
-nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
-nav ul li { margin: 0 15px; }
-nav ul li a { 
-    color: var(--text-gray); 
-    text-decoration: none; 
-    font-size: 0.9rem;
-    font-weight: 300;
-    transition: 0.3s; 
-}
-nav ul li a:hover { color: var(--text-light); }
-
-/* Le bouton "Me contacter" style SAO */
-.btn-contact {
-    background: transparent;
-    border: 1px solid var(--accent-gold);
-    color: var(--accent-gold) !important;
-    padding: 8px 20px;
-    border-radius: 20px;
-    transition: 0.3s;
-}
-.btn-contact:hover {
-    background: var(--accent-gold);
-    color: #000 !important;
-    box-shadow: 0 0 10px rgba(244, 208, 111, 0.3);
-}
-
-/* =============================================
-   3. SECTION HERO (L'Atterrissage)
-   ============================================= */
-header {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 80px; /* Pour pas que le menu cache le titre */
-}
-
-.hero-content h1 { 
-    font-family: var(--font-tech);
-    font-size: 3.2rem; 
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 25px; 
-    color: var(--text-light);
-}
-
-/* On adoucit le glow bleu pour qu'il soit "reposant" */
-.hero-content span { 
-    color: var(--primary-glow); 
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5); 
-}
-
-.hero-content p {
-    color: var(--text-gray);
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-    line-height: 1.6;
-}
-
-/* Les boutons centrés style SAO */
-.hero-btns {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.btn-primary, .btn-secondary {
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-/* Bouton principal doré type "Télécharger le launcher" */
-.btn-primary {
-    background: var(--accent-gold);
-    color: #000;
-    box-shadow: 0 4px 15px rgba(244, 208, 111, 0.2);
-}
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(244, 208, 111, 0.4);
-}
-
-/* Bouton secondaire transparent type "Rejoindre le Discord" */
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.03);
-    color: var(--text-light);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
-
-:root {
-    --bg-light: #1e2540; /* Bleu nuit plus clair */
-    --bg-dark: #121629;
-    --primary-glow: #00f2ff;
-    --gold-light: #ffe59e; /* Ton doré plus clair */
-    --text-pure: #ffffff;
-}
-
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at center, var(--bg-light) 0%, var(--bg-dark) 100%);
-    color: var(--text-pure);
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: white;
     overflow-x: hidden;
 }
 
-/* --- EFFET POUSSIÈRE --- */
-.particles {
+/* --- NAVIGATION LARGE --- */
+nav {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Texture de poussière */
-    opacity: 0.3;
-    pointer-events: none;
-    animation: float 20s linear infinite;
-}
-
-@keyframes float {
-    from { background-position: 0 0; }
-    to { background-position: 0 -1000px; }
-}
-
-/* --- NAVIGATION --- */
-nav ul li a {
-    color: rgba(255, 255, 255, 0.9); /* Plus blanc */
-    font-weight: 500;
-}
-
-/* --- BOUTONS --- */
-.btn-primary {
-    background: var(--gold-light);
-    color: #121629;
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 0 15px rgba(255, 229, 158, 0.4);
-}
-
-.btn-contact {
-    border: 1px solid var(--gold-light) !important;
-    color: var(--gold-light) !important;
-}
-
-/* --- SECTIONS INFOS & PARCOURS --- */
-section { padding: 80px 10%; }
-
-.container h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    text-decoration: underline var(--primary-glow);
-}
-
-.info-grid {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 20px;
-}
-
-.parcours-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    text-align: center;
-}
-
-.step {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Prend presque tout l'écran */
+    max-width: 1400px;
     background: rgba(255, 255, 255, 0.03);
-    padding: 20px;
-    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
 }
 
-.step.highlight {
-    border-color: var(--primary-glow);
-    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
 }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: white; }
+
+.nav-btn {
+    background: var(--gold);
+    color: #0f1322;
+    padding: 10px 25px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+/* --- HERO SECTION GEANTE --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 0.9rem;
+    letter-spacing: 8px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 8rem; /* ENORME */
+    margin: 0;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    background: linear-gradient(to bottom, #fff 40%, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.description {
+    max-width: 700px;
+    margin: 30px auto;
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.description span { color: var(--cyan); font-weight: 600; }
+
+/* --- BOUTONS LUMINEUX --- */
+.hero-actions { display: flex; gap: 20px; justify-content: center; margin-top: 40px; }
+
+.btn-gold {
+    background: var(--gold);
+    color: #000;
+    padding: 18px 40px;
+    border-radius: 15px;
+    font-weight: 900;
+    text-decoration: none;
+    box-shadow: 0 0 30px var(--gold-glow);
+    transition: 0.3s;
+}
+
+.btn-outline {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* --- BARRE DE STATUS (Le détail qui tue) --- */
+.status-bar {
+    display: flex;
+    gap: 2px;
+    background: rgba(15, 23, 42, 0.8);
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.stat-item { flex: 1; display: flex; flex-direction: column; border-right: 1px solid rgba(255,255,255,0.1); }
+.stat-item:last-child { border: none; }
+
+.stat-val { font-size: 1.5rem; font-weight: 700; }
+.stat-label { font-size: 0.65rem; color: #64748b; text-transform: uppercase; margin-top: 5px; }
+.active { color: #4ade80; }
