@@ -1,89 +1,321 @@
+/* =============================================
+   1. VARIABLES ET FONTES (L'ambiance "Reposante")
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Mono&display=swap');
+
 :root {
-    --primary-color: #00d4ff; /* Un bleu électrique type SAO */
-    --bg-dark: #0f0f0f;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --text-color: #ffffff;
+    /* On remplace le noir pur par le bleu nuit très sombre du site SAO */
+    --bg-dark: #101425; 
+    /* Un bleu cyan plus doux pour le glow, moins agressif */
+    --primary-glow: #00e5ff; 
+    /* Le doré/jaune des boutons SAO, pour le contraste */
+    --accent-gold: #f4d06f; 
+    --text-light: #ffffff;
+    --text-gray: #a0aab5;
+    
+    /* Police principale douce (Poppins) et police tech pour les titres (Space Mono) */
+    --font-main: 'Poppins', sans-serif;
+    --font-tech: 'Space Mono', monospace;
 }
 
 body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: var(--font-main);
     background-color: var(--bg-dark);
-    color: var(--text-color);
+    /* Ajout du dégradé radial subtil en fond comme sur l'image 0 */
+    background-image: radial-gradient(circle at center, #1a203a 0%, #101425 100%);
+    color: var(--text-light);
     scroll-behavior: smooth;
+    letter-spacing: 0.5px;
 }
 
-/* Navigation */
+/* =============================================
+   2. BARRE DE NAVIGATION (Translucide et centrée)
+   ============================================= */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%;
-    background: rgba(15, 15, 15, 0.95);
+    /* On centre la barre et on lui donne de l'air */
+    padding: 15px 50px;
+    margin: 20px auto;
+    max-width: 1200px;
+    /* Effet "Glassmorphism" (verre dépoli) de l'image 0 */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     position: fixed;
-    width: 84%;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-.logo { font-size: 1.5rem; font-weight: bold; }
-.logo span { color: var(--primary-color); }
+.logo { 
+    font-family: var(--font-tech);
+    font-size: 1.3rem; 
+    font-weight: 600; 
+    letter-spacing: -1px;
+}
+.logo span { color: var(--primary-glow); }
 
-nav ul { display: flex; list-style: none; }
-nav ul li { margin-left: 30px; }
-nav ul li a { color: white; text-decoration: none; transition: 0.3s; }
-nav ul li a:hover { color: var(--primary-color); }
+nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+nav ul li { margin: 0 15px; }
+nav ul li a { 
+    color: var(--text-gray); 
+    text-decoration: none; 
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: 0.3s; 
+}
+nav ul li a:hover { color: var(--text-light); }
 
-/* Hero Section */
+/* Le bouton "Me contacter" style SAO */
+.btn-contact {
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold) !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.btn-contact:hover {
+    background: var(--accent-gold);
+    color: #000 !important;
+    box-shadow: 0 0 10px rgba(244, 208, 111, 0.3);
+}
+
+/* =============================================
+   3. SECTION HERO (L'Atterrissage)
+   ============================================= */
 header {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f0f 100%);
+    padding-top: 80px; /* Pour pas que le menu cache le titre */
 }
 
-.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; }
-.hero-content span { color: var(--primary-color); text-shadow: 0 0 15px var(--primary-color); }
-
-.btn-primary {
-    background: var(--primary-color);
-    padding: 12px 25px;
-    border-radius: 5px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 15px;
-}
-/* Style pour la mise en avant 2ème année */
-.project-focus {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 40px;
-    border-left: 5px solid var(--primary-color);
+.hero-content h1 { 
+    font-family: var(--font-tech);
+    font-size: 3.2rem; 
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 25px; 
+    color: var(--text-light);
 }
 
-.focus-content {
+/* On adoucit le glow bleu pour qu'il soit "reposant" */
+.hero-content span { 
+    color: var(--primary-glow); 
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5); 
+}
+
+.hero-content p {
+    color: var(--text-gray);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* Les boutons centrés style SAO */
+.hero-btns {
     display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-.focus-text { flex: 1; min-width: 300px; }
-.focus-text ul { list-style: "→ "; color: #ccc; padding-left: 20px; }
-.focus-text ul li { margin-bottom: 10px; }
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
 
-.focus-visual {
-    flex: 1;
-    min-width: 300px;
-    height: 300px;
-    background: #222;
-    border-radius: 10px;
+/* Bouton principal doré type "Télécharger le launcher" */
+.btn-primary {
+    background: var(--accent-gold);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(244, 208, 111, 0.2);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 208, 111, 0.4);
+}
+
+/* Bouton secondaire transparent type "Rejoindre le Discord" */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}/* =============================================
+   1. VARIABLES ET FONTES (L'ambiance "Reposante")
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Mono&display=swap');
+
+:root {
+    /* On remplace le noir pur par le bleu nuit très sombre du site SAO */
+    --bg-dark: #101425; 
+    /* Un bleu cyan plus doux pour le glow, moins agressif */
+    --primary-glow: #00e5ff; 
+    /* Le doré/jaune des boutons SAO, pour le contraste */
+    --accent-gold: #f4d06f; 
+    --text-light: #ffffff;
+    --text-gray: #a0aab5;
+    
+    /* Police principale douce (Poppins) et police tech pour les titres (Space Mono) */
+    --font-main: 'Poppins', sans-serif;
+    --font-tech: 'Space Mono', monospace;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    /* Ajout du dégradé radial subtil en fond comme sur l'image 0 */
+    background-image: radial-gradient(circle at center, #1a203a 0%, #101425 100%);
+    color: var(--text-light);
+    scroll-behavior: smooth;
+    letter-spacing: 0.5px;
+}
+
+/* =============================================
+   2. BARRE DE NAVIGATION (Translucide et centrée)
+   ============================================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* On centre la barre et on lui donne de l'air */
+    padding: 15px 50px;
+    margin: 20px auto;
+    max-width: 1200px;
+    /* Effet "Glassmorphism" (verre dépoli) de l'image 0 */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.logo { 
+    font-family: var(--font-tech);
+    font-size: 1.3rem; 
+    font-weight: 600; 
+    letter-spacing: -1px;
+}
+.logo span { color: var(--primary-glow); }
+
+nav ul { display: flex; list-style: none; margin: 0; padding: 0; }
+nav ul li { margin: 0 15px; }
+nav ul li a { 
+    color: var(--text-gray); 
+    text-decoration: none; 
+    font-size: 0.9rem;
+    font-weight: 300;
+    transition: 0.3s; 
+}
+nav ul li a:hover { color: var(--text-light); }
+
+/* Le bouton "Me contacter" style SAO */
+.btn-contact {
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold) !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+.btn-contact:hover {
+    background: var(--accent-gold);
+    color: #000 !important;
+    box-shadow: 0 0 10px rgba(244, 208, 111, 0.3);
+}
+
+/* =============================================
+   3. SECTION HERO (L'Atterrissage)
+   ============================================= */
+header {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    text-align: center;
+    padding-top: 80px; /* Pour pas que le menu cache le titre */
 }
 
-.img-fluid { max-width: 100%; height: auto; }
+.hero-content h1 { 
+    font-family: var(--font-tech);
+    font-size: 3.2rem; 
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 25px; 
+    color: var(--text-light);
+}
+
+/* On adoucit le glow bleu pour qu'il soit "reposant" */
+.hero-content span { 
+    color: var(--primary-glow); 
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5); 
+}
+
+.hero-content p {
+    color: var(--text-gray);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* Les boutons centrés style SAO */
+.hero-btns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+/* Bouton principal doré type "Télécharger le launcher" */
+.btn-primary {
+    background: var(--accent-gold);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(244, 208, 111, 0.2);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 208, 111, 0.4);
+}
+
+/* Bouton secondaire transparent type "Rejoindre le Discord" */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
