@@ -1,138 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Grotesk:wght@300;500;700&display=swap');
+/* Import de polices plus sérieuses et tech */
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Outfit:wght@300;600;900&display=swap');
 
 :root {
-    /* Dégradé plus clair et lumineux au centre */
-    --bg-gradient: radial-gradient(circle at center, #3d4a7c 0%, #101425 80%);
+    --bg-dark: #0a0d1a;
     --gold: #fbc02d;
+    --gold-glow: rgba(251, 192, 45, 0.4);
     --cyan: #00e5ff;
+    --white-flare: rgba(255, 255, 255, 0.15);
 }
 
 body {
     margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    background: var(--bg-gradient);
-    background-attachment: fixed;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    /* Dégradé de fond plus complexe avec des zones de lumière */
+    background: radial-gradient(circle at 50% 40%, #1c264a 0%, #0a0d17 100%);
     color: white;
     height: 100vh;
+    overflow-x: hidden;
 }
 
-/* --- EFFET POUSSIÈRE LUMINEUSE --- */
+/* --- HALOS DE LUMIERE (L'effet éclairci) --- */
+.light-flare {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    pointer-events: none;
+}
+.flare-1 {
+    width: 400px; height: 400px;
+    background: var(--white-flare);
+    top: 20%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.flare-2 {
+    width: 600px; height: 600px;
+    background: rgba(0, 229, 255, 0.05);
+    top: 40%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* --- POUSSIÈRE --- */
 .particles {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background-image: 
-        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 50px 160px, #fff, rgba(0,0,0,0));
-    background-size: 200px 200px;
-    opacity: 0.4;
-    animation: particlesAnim 60s linear infinite;
-    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+    animation: moveUp 100s linear infinite;
 }
+@keyframes moveUp { from { background-position: 0 0; } to { background-position: 0 -1000px; } }
 
-@keyframes particlesAnim {
-    from { transform: translateY(0); }
-    to { transform: translateY(-1000px); }
-}
-
-/* --- NAVIGATION AFFINÉE --- */
+/* --- NAVIGATION --- */
 nav {
     position: fixed;
-    top: 30px; /* Plus d'espace au dessus */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%; /* Largeur réduite */
-    max-width: 1100px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    top: 25px; left: 50%; transform: translateX(-50%);
+    width: 85%; max-width: 1200px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 1000;
 }
+.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 30px;
+.logo { font-family: 'Michroma', sans-serif; font-size: 0.9rem; letter-spacing: 2px; }
+.logo span { color: var(--cyan); opacity: 0.7; }
+
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a { 
+    text-decoration: none; color: white; font-size: 0.75rem; 
+    text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; transition: 0.3s;
 }
-
-.logo { font-family: 'Montserrat', sans-serif; font-weight: 900; letter-spacing: 1px; }
-.logo span { color: var(--cyan); font-weight: 400; margin-left: 5px; }
-
-.nav-links { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.8;
-}
+.nav-links a:hover { opacity: 1; color: var(--cyan); }
 
 .nav-btn {
-    background: var(--gold);
-    color: #000;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 0.75rem;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    padding: 7px 18px; border-radius: 8px;
+    font-weight: 700; text-decoration: none; font-size: 0.7rem;
+    transition: 0.3s;
 }
+.nav-btn:hover { background: var(--gold); color: black; box-shadow: 0 0 15px var(--gold-glow); }
 
-/* --- HERO SECTION REPROPORTIONNÉE --- */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 50px; /* Plus d'espace sous la barre nav */
-}
+/* --- HERO --- */
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
 
-.welcome-text {
-    font-size: 0.9rem;
-    letter-spacing: 5px;
-    color: var(--cyan);
-    margin-bottom: 5px;
-}
+.welcome-text { font-family: 'Michroma', sans-serif; font-size: 0.8rem; letter-spacing: 8px; color: var(--cyan); margin-bottom: 15px; }
 
 .main-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
-    font-size: 4.5rem; /* Taille réduite (était à 8rem) */
-    margin: 0;
-    background: linear-gradient(to bottom, #fff 50%, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Michroma', sans-serif; /* Fini l'effet Fortnite */
+    font-size: 4rem; margin: 0;
+    background: linear-gradient(to bottom, #ffffff 60%, rgba(255,255,255,0.2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
 }
 
-.description {
-    max-width: 600px;
-    margin: 20px auto;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #cbd5e1;
-}
+.description { max-width: 550px; margin: 25px auto; font-size: 0.95rem; line-height: 1.7; color: #a0aab5; font-weight: 300; }
+.description span { color: white; font-weight: 600; }
 
 /* --- BOUTONS --- */
-.hero-actions { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
-
+.hero-actions { display: flex; gap: 20px; justify-content: center; margin-top: 35px; }
 .btn-gold {
-    background: var(--gold);
-    color: #000;
-    padding: 14px 30px;
-    border-radius: 10px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 0 20px rgba(251, 192, 45, 0.3);
+    background: var(--gold); color: black; padding: 15px 35px;
+    border-radius: 10px; font-weight: 900; text-decoration: none;
+    box-shadow: 0 5px 20px rgba(251, 192, 45, 0.4);
 }
-
 .btn-outline {
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 14px 30px;
-    border-radius: 10px;
-    text-decoration: none;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none;
 }
